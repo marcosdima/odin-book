@@ -1,0 +1,2 @@
+class FollowRequest < Request
+end
