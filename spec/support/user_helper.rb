@@ -3,7 +3,8 @@ module UserHelpers
     User.create!(
         {
           email: "test#{index}@example.com",
-          password: "password123"
+          password: "password123",
+          username: "testuser#{index}"
         }.merge(attrs)
     )
   end
