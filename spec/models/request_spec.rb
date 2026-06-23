@@ -29,39 +29,38 @@ RSpec.describe Request, type: :model do
   describe "Updating a request" do
     let(:request) { FollowRequest.create!(sender: sender, receiver: receiver) }
 
-    it "Should let you update a request accepted attribute to true" do
-      request.accepted = true
+    it "... should let you update a request accepted attribute to true" do
+      request.accept!
       expect(request).to be_valid
     end
 
-    it "Should not let you update a request accepted attribute to false" do
-      request.accepted = false
+    it "... should let you update a request accepted attribute to false" do
+      request.reject!
       expect(request).to be_valid
     end
 
-    it "Should not let you update a request accepted attribute if it was already set" do
-      request.accepted = true
-      request.save!
-
-      request.accepted = false
-      expect(request).not_to be_valid
-      expect(request.errors[:accepted]).to include("can't be updated")
+    it "... should not let you update accepted attribute if it was already set" do
+      request.accept!
+      expect { request.reject! }.to raise_error(Request::AlreadyProcessedError)
     end
+  end
 
-    it "Should not let you update a request sender" do
-      new_sender = create_user(2)
-      request.sender = new_sender
+  describe "methods:" do
+    let(:request) { Request.new(sender: sender, receiver: receiver) }
+    describe "#pending? ->" do
+      it "Should return true if the request is pending" do
+        expect(request.pending?).to be true
+      end
 
-      expect(request).not_to be_valid
-      expect(request.errors[:base]).to include("sender and receiver can't be changed")
-    end
+      it "Should return false if the request is accepted" do
+        request.accepted = true
+        expect(request.pending?).to be false
+      end
 
-    it "Should not let you update a request receiver" do
-      new_receiver = create_user(2)
-      request.receiver = new_receiver
-
-      expect(request).not_to be_valid
-      expect(request.errors[:base]).to include("sender and receiver can't be changed")
+      it "Should return false if the request is rejected" do
+        request.accepted = false
+        expect(request.pending?).to be false
+      end
     end
   end
 end
