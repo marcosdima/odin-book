@@ -5,4 +5,11 @@ Rails.application.routes.draw do
 
   get "about", to: "pages#about"
   resources :users, only: %i[ show ]
+
+  resources :requests, only: %i[ create ] do
+    member do
+      post :accept
+      post :reject
+    end
+  end
 end
