@@ -1,9 +1,23 @@
 <h1>Welcome to Our App</h1>
 
+<hr>
+
+<div class="posts">
+  <h2>Recent <%= link_to "Posts", posts_path %></h2>
+  <% @recent_posts.each do |post| %>
+    <div class="post">
+      <h3><%= link_to post.title, post_path(post) %></h3>
+      <p><%= truncate(post.text, length: 100) %></p>
+    </div>
+  <% end %>
+</div>
+
+<hr>
+
 <% if user_signed_in? %>
   <p>Welcome back, <%= link_to current_user.username, user_path(current_user) %>!</p>
   <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
 <% else %>
-  <%= button_to "Log In", new_user_session_path %>
-  <%= button_to "Sign Up", new_user_registration_path %>
+  <%= link_to "Log In", new_user_session_path %>
+  <%= link_to "Sign Up", new_user_registration_path %>
 <% end %>
