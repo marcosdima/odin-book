@@ -36,4 +36,7 @@ class User < ApplicationRecord
   has_many :followers,
     through: :passive_follows,
     source: :follower
+
+  # Posts.
+  has_many :posts, foreign_key: :author_id
 end

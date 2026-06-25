@@ -12,4 +12,6 @@ Rails.application.routes.draw do
       post :reject
     end
   end
+
+  resources :posts, only: %i[ index new create show ]
 end

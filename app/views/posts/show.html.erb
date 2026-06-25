@@ -1,0 +1,14 @@
+<% if flash[:success] %>
+  <div class="alert alert-success">
+    <%= flash[:success] %>
+  </div>
+<% end %>
+
+<h1><%= @post.title %></h1>
+<p><%= @post.text %></p>
+
+<% if current_user == @post.author %>
+  <p>By: You</p>
+<% else%>
+  <p>By: <%= link_to @post.author.username, @post.author %></p>
+<% end %>
