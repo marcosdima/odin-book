@@ -63,7 +63,7 @@ RSpec.describe "Requests", type: :request do
       post accept_request_path(request)
       post accept_request_path(request)
       expect(response).to have_http_status(302)
-      expect(flash[:forbidden]).to eq("This request has already been processed.")
+      expect(flash[:error]).to eq("This request has already been processed.")
     end
   end
 
@@ -85,7 +85,7 @@ RSpec.describe "Requests", type: :request do
       post reject_request_path(request)
       post reject_request_path(request)
       expect(response).to have_http_status(302)
-      expect(flash[:forbidden]).to eq("This request has already been processed.")
+      expect(flash[:error]).to eq("This request has already been processed.")
     end
   end
 end

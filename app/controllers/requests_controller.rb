@@ -27,7 +27,7 @@ class RequestsController < ApplicationController
       flash[:success] = "Request sent."
       redirect_to user_path(@request.receiver), status: :created
     else
-      flash[:failure] = "Unable to send request."
+      flash[:error] = "Unable to send request."
       redirect_to user_path(@request.receiver), status: :unprocessable_entity
     end
   end
@@ -46,11 +46,11 @@ class RequestsController < ApplicationController
 
   def destroy
     if @request.sender != current_user
-      flash[:forbidden] = "You can cancel only your own requests."
+      flash[:error] = "You can cancel only your own requests."
     elsif @request.destroy
       flash[:success] = "Request canceled."
     else
-      flash[:failure] = "Unable to cancel request."
+      flash[:error] = "Unable to cancel request."
     end
 
     redirect_to user_path(current_user)
@@ -66,7 +66,7 @@ class RequestsController < ApplicationController
     end
 
     def handle_already_processed_error
-      flash[:forbidden] = "This request has already been processed."
+      flash[:error] = "This request has already been processed."
       redirect_to user_path(@request.receiver)
     end
 end

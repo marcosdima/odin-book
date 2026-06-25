@@ -4,8 +4,36 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :requests_sent, class_name: "Request", foreign_key: "sender_id"
-  has_many :requests_received, class_name: "Request", foreign_key: "receiver_id"
+  validates :username,
+    presence: true,
+    uniqueness: true,
+    length: { minimum: 2, maximum: 50 }
 
-  validates :username, presence: true, uniqueness: true, length: { minimum: 2, maximum: 50 }
+  # Requests.
+  has_many :requests_sent,
+    class_name: "Request",
+    foreign_key: "sender_id"
+
+  has_many :requests_received,
+    class_name: "Request",
+    foreign_key: "receiver_id"
+
+  # Follows.
+  has_many :active_follows,
+    class_name: "Follow",
+    foreign_key: :follower_id,
+    dependent: :destroy
+
+  has_many :passive_follows,
+    class_name: "Follow",
+    foreign_key: :following_id,
+    dependent: :destroy
+
+  has_many :following,
+    through: :active_follows,
+    source: :following
+
+  has_many :followers,
+    through: :passive_follows,
+    source: :follower
 end
