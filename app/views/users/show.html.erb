@@ -1,7 +1,12 @@
-<h1><%= @your_page ? 'Your' : @user.name + "'s"  %> Page</h1>
+<h1><%= @your_page ? 'Your' : @user.username + "'s"  %> Page</h1>
+<% if flash[:success] %>
+  <p class="flash-success"><%= flash[:success] %></p>
+<% elsif flash[:failure] %>
+  <p class="flash-failure">Error: <%= flash[:failure] %></p>
+<% end %>
 
 <% unless @your_page %>
-  <% link_to "Follow request", new_follow_request_path(sender: current_user, receiver: @user) %>
+  <% button_to "Follow request", request_path(sender: current_user, receiver: @user) %>
 <% else %>
   <p>This is your page.</p>
 <% end %>
