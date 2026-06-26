@@ -1,16 +1,18 @@
-<h1><%= @user_name %> Page</h1>
+<h1><%= profile_title(@user) %> Page</h1>
+
 <% if flash[:success] %>
   <p class="flash-success"><%= flash[:success] %></p>
 <% elsif flash[:failure] %>
   <p class="flash-failure">Error: <%= flash[:failure] %></p>
 <% end %>
 
-<% unless @user_name %>
-  <%= button_to "Follow request", request_path(receiver_id: @user.id, type: "FollowRequest") %>
+<% unless your_page?(@user) %>
+  <%= button_to "Follow request", requests_path(request: { receiver_id: @user.id, type: "FollowRequest" }) %>
 <% end %>
 
 <% if @user_posts.any? %>
   <h2>Posts</h2>
+
   <ul>
     <% @user_posts.each do |post| %>
       <li>
