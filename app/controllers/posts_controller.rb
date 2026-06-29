@@ -27,6 +27,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comments = @post.comments.first(10)
   end
 
   private

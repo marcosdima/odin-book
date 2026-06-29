@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user_posts = @user.posts.order(created_at: :desc)
+    @follow_requests = FollowRequest.pendings(@user)
   end
 
   private

@@ -39,4 +39,10 @@ class User < ApplicationRecord
 
   # Posts.
   has_many :posts, foreign_key: :author_id
+
+  # Comments.
+  has_many :comments, foreign_key: :author_id
+
+  # Likes.
+  has_many :likes
 end

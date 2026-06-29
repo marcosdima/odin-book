@@ -28,7 +28,7 @@ class RequestsController < ApplicationController
       redirect_to user_path(@request.receiver), status: :created
     else
       flash[:error] = "Unable to send request."
-      redirect_to user_path(@request.receiver), status: :unprocessable_entity
+      redirect_to user_path(@request.receiver), status: :unprocessable_content
     end
   end
 

@@ -64,7 +64,7 @@ RSpec.describe "FollowRequests", type: :request do
         post requests_path, params: follow_request_params
         post requests_path, params: follow_request_params
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(flash[:error]).to eq("Unable to send request.")
       end
     end

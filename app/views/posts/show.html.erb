@@ -7,8 +7,23 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.text %></p>
 
-<% if current_user == @post.author %>
+<% if is_author? %>
   <p>By: You</p>
 <% else%>
   <p>By: <%= link_to @post.author.username, @post.author %></p>
+<% end %>
+
+<hr>
+
+<% if @comments.any? %>
+  <h2>Comments</h2>
+  <ul>
+    <% @comments.each do |comment| %>
+      <li>
+        <strong><%= comment.author.username %>:</strong> <%= comment.text %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No comments yet.</p>
 <% end %>

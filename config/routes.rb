@@ -14,4 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :posts, only: %i[ index new create show ]
+  resources :comments, only: %i[ create ]
+  resources :likes, only: %i[ create ] do
+    delete :unlike, on: :collection
+  end
 end
