@@ -25,23 +25,23 @@ class RequestsController < ApplicationController
 
     if @request.save
       flash[:success] = "Request sent."
-      redirect_to user_path(@request.receiver), status: :created
     else
       flash[:error] = "Unable to send request."
-      redirect_to user_path(@request.receiver), status: :unprocessable_content
     end
+
+    redirect_back fallback_location: root_path, status: :see_other
   end
 
   def accept
     @request.accept!
     flash[:success] = "Request accepted."
-    redirect_to user_path(@request.receiver)
+    redirect_back fallback_location: root_path, status: :see_other
   end
 
   def reject
     @request.reject!
     flash[:success] = "Request rejected."
-    redirect_to user_path(@request.receiver)
+    redirect_back fallback_location: root_path, status: :see_other
   end
 
   def destroy
@@ -53,7 +53,7 @@ class RequestsController < ApplicationController
       flash[:error] = "Unable to cancel request."
     end
 
-    redirect_to user_path(current_user)
+    redirect_back fallback_location: root_path, status: :see_other
   end
 
   private
@@ -67,6 +67,6 @@ class RequestsController < ApplicationController
 
     def handle_already_processed_error
       flash[:error] = "This request has already been processed."
-      redirect_to user_path(@request.receiver)
+      redirect_back fallback_location: root_path, status: :see_other
     end
 end

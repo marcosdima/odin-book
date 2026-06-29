@@ -15,7 +15,7 @@ RSpec.describe "Requests", type: :request do
     describe "Should crete a request if... " do
       it "has valid parameters" do
         post requests_path, params: follow_request_params
-        expect(response).to have_http_status(201)
+        expect(response).to have_http_status(:see_other)
         expect(flash[:success]).to eq("Request sent.")
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe "Requests", type: :request do
       it "there is already a pending request, with the same type, between the same users" do
         post requests_path, params: follow_request_params
         post requests_path, params: follow_request_params
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(:see_other)
       end
     end
   end
@@ -51,7 +51,7 @@ RSpec.describe "Requests", type: :request do
 
       request = Request.last
       post accept_request_path(request)
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(:see_other)
 
       request = Request.last
       expect(request.accepted?).to eq(true)
@@ -62,7 +62,7 @@ RSpec.describe "Requests", type: :request do
       request = Request.last
       post accept_request_path(request)
       post accept_request_path(request)
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(:see_other)
       expect(flash[:error]).to eq("This request has already been processed.")
     end
   end
@@ -73,7 +73,7 @@ RSpec.describe "Requests", type: :request do
 
       request = Request.last
       post reject_request_path(request)
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(:see_other)
 
       request = Request.last
       expect(request.accepted?).to eq(false)
@@ -84,7 +84,7 @@ RSpec.describe "Requests", type: :request do
       request = Request.last
       post reject_request_path(request)
       post reject_request_path(request)
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(:see_other)
       expect(flash[:error]).to eq("This request has already been processed.")
     end
   end
