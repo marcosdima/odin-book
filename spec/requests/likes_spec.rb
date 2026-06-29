@@ -13,18 +13,18 @@ RSpec.describe "Likes", type: :request do
   describe "POST /likes" do
     it "like a comment" do
       post likes_path, params: { like: { likeable_id: comment.id, likeable_type: "Comment" } }
-      expect(response).to have_http_status(201)
+      expect(response).to have_http_status(:see_other)
     end
 
     it "like a post" do
       post likes_path, params: { like: { likeable_id: user_post.id, likeable_type: "Post" } }
-      expect(response).to have_http_status(201)
+      expect(response).to have_http_status(:see_other)
     end
 
     it "returns an error if the like already exists" do
       post likes_path, params: { like: { likeable_id: comment.id, likeable_type: "Comment" } }
       post likes_path, params: { like: { likeable_id: comment.id, likeable_type: "Comment" } }
-      expect(response).to have_http_status(422)
+      expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 

@@ -4,7 +4,7 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(like_params)
     if @like.save
-      redirect_back(fallback_location: root_path, status: :created)
+      redirect_back(fallback_location: root_path, status: :see_other)
     else
       flash[:error] = "Unable to like."
       redirect_back(fallback_location: root_path, status: :unprocessable_entity)
