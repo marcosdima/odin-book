@@ -1,0 +1,26 @@
+<% if signed_in? %>
+  <% unless your_page? %>
+    <% if already_following? %>
+      <i>Following</i>
+    <% elsif follow_pending? %>
+      <p>Your follow request to <%= @user.username %> is pending.</p>
+    <% else %>
+      <%= button_to "Follow request", requests_path(request: { receiver_id: @user.id, type: "FollowRequest" }) %>
+    <% end %>
+  <% else %>
+    <h2>Follow Requests</h2>
+    <% if @follow_requests.any? %>
+      <ul>
+        <% @follow_requests.each do |request| %>
+          <li>
+            <%= request.sender.username %>
+            <%= button_to "Accept", accept_request_path(request), method: :post %>
+            <%= button_to "Reject", reject_request_path(request), method: :post %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No pending follow requests.</p>
+    <% end %>
+  <% end %>
+<% end %>

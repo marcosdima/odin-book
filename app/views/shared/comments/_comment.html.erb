@@ -1,0 +1,6 @@
+<div class="comment">
+  <strong class="comment-author"><%= comment.author.username %>:</strong>
+  <p class="comment-text"><%= comment.text %></p>
+  <%= render "shared/likes/button", likeable: comment %>
+  <%= render "shared/likes/count", likeable: comment %>
+</div>

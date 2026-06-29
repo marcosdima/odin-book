@@ -13,17 +13,9 @@
   <p>By: <%= link_to @post.author.username, @post.author %></p>
 <% end %>
 
+<%= render "shared/likes/count", likeable: @post %>
+<%= render "shared/likes/button", likeable: @post %>
+
 <hr>
 
-<% if @comments.any? %>
-  <h2>Comments</h2>
-  <ul>
-    <% @comments.each do |comment| %>
-      <li>
-        <strong><%= comment.author.username %>:</strong> <%= comment.text %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No comments yet.</p>
-<% end %>
+<%= render "shared/comments/comments", comments: @post.comments %>
