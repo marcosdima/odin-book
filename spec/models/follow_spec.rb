@@ -23,4 +23,12 @@ RSpec.describe Follow, type: :model do
     expect(user.active_follows.count).to eq(0)
     expect(other_user.passive_follows.count).to eq(0)
   end
+
+  it "a user cannot follow the same user twice" do
+    Follow.create(follower: user, following: other_user)
+    duplicate_follow = Follow.new(follower: user, following: other_user)
+
+    expect(duplicate_follow.valid?).to be false
+    expect(duplicate_follow.errors[:follower_id]).to include("has already been taken")
+  end
 end

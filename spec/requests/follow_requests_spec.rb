@@ -8,21 +8,38 @@ RSpec.describe "FollowRequests", type: :request do
   } }
 
   describe "POST /requests" do
-    it "creates a follow request" do
+    before do
       sign_in user
+    end
 
-      post requests_path, params: {
-        request: {
-          receiver_id: other_user.id,
-          type: "FollowRequest"
-        }
-      }
+    it "creates a follow request" do
+      post requests_path, params: follow_request_params
 
-      expect(response).to have_http_status(:created)
+      expect(response).to have_http_status(:see_other)
       expect(flash[:success]).to eq("Request sent.")
 
       expect(user.requests_sent.count).to eq(1)
       expect(other_user.requests_received.count).to eq(1)
+    end
+
+    describe "returns an error if..." do
+      it "the request was already sent" do
+        post requests_path, params: follow_request_params
+        post requests_path, params: follow_request_params
+
+        expect(response).to have_http_status(:see_other)
+        expect(flash[:error]).to eq("Unable to send request.")
+      end
+
+      it "the request was already accepted" do
+        post requests_path, params: follow_request_params
+        FollowRequest.first.accept!
+
+        post requests_path, params: follow_request_params
+
+        expect(response).to have_http_status(:see_other)
+        expect(flash[:error]).to eq("Unable to send request.")
+      end
     end
   end
 
@@ -37,7 +54,7 @@ RSpec.describe "FollowRequests", type: :request do
 
       post accept_request_path(follow_request)
 
-      expect(response).to redirect_to(user_path(other_user))
+      expect(response).to have_http_status(:see_other)
       expect(flash[:success]).to eq("Request accepted.")
       expect(Follow.exists?(follower: user, following: other_user)).to be true
     end
@@ -54,18 +71,42 @@ RSpec.describe "FollowRequests", type: :request do
         post accept_request_path(follow_request)
         post accept_request_path(follow_request)
 
-        expect(response).to have_http_status(:found)
+        expect(response).to have_http_status(:see_other)
         expect(flash[:error]).to eq("This request has already been processed.")
       end
+    end
+  end
 
-      it "a new request is created for the same users" do
+  describe "POST /requests/:id/reject" do
+    it "rejects a follow request" do
+      sign_in other_user
+
+      follow_request = FollowRequest.create!(
+        sender: user,
+        receiver: other_user
+      )
+
+      post reject_request_path(follow_request)
+
+      expect(response).to have_http_status(:see_other)
+      expect(flash[:success]).to eq("Request rejected.")
+      expect(Follow.exists?(follower: user, following: other_user)).to be false
+    end
+
+    describe "returns an error if..." do
+      it "the request has already been processed" do
         sign_in other_user
 
-        post requests_path, params: follow_request_params
-        post requests_path, params: follow_request_params
+        follow_request = FollowRequest.create!(
+          sender: user,
+          receiver: other_user
+        )
 
-        expect(response).to have_http_status(:unprocessable_content)
-        expect(flash[:error]).to eq("Unable to send request.")
+        post reject_request_path(follow_request)
+        post reject_request_path(follow_request)
+
+        expect(response).to have_http_status(:see_other)
+        expect(flash[:error]).to eq("This request has already been processed.")
       end
     end
   end
