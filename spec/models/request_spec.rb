@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Request, type: :model do
   let(:sender) { create_user }
-  let(:receiver) { create_user(1) }
+  let(:receiver) { create_user(index: 1) }
 
   describe "Creating a request" do
     it "Should Create a valid request" do

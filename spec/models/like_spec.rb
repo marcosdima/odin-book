@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Like, type: :model do
   let(:user) { create_user }
-  let(:user2) { create_user(1) }
+  let(:user2) { create_user(index: 1) }
   let(:post) { create_post(user) }
 
   describe 'creation' do

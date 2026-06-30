@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "FollowRequests", type: :request do
   let(:user) { create_user }
-  let(:other_user) { create_user(1) }
+  let(:other_user) { create_user(index: 1) }
   let(:follow_request_params) { {
     request: { receiver_id: other_user.id, type: "FollowRequest" }
   } }
