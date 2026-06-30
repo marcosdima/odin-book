@@ -9,6 +9,11 @@ class User < ApplicationRecord
     uniqueness: true,
     length: { minimum: 2, maximum: 50 }
 
+  validates :email,
+    presence: true,
+    uniqueness: true,
+    format: { with: URI::MailTo::EMAIL_REGEXP, message: "must be a valid email address" }
+
   # Requests.
   has_many :requests_sent,
     class_name: "Request",
