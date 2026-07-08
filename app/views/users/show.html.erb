@@ -1,5 +1,16 @@
 <h1><%= profile_title %> Page</h1>
 
+<% if @user.bio.present? %>
+  <p><%= @user.bio %></p>
+<% end %>
+
+<% if @user.avatar_url.present? %>
+  <img
+    src="<%= @user.avatar_url %>"
+    alt="<%= @user.username %>"
+  />
+<% end %>
+
 <% if flash[:success] %>
   <p class="flash-success"><%= flash[:success] %></p>
 <% elsif flash[:failure] %>

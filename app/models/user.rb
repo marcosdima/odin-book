@@ -56,6 +56,7 @@ class User < ApplicationRecord
   has_many :likes
 
   validate :import_gravatar_profile, on: :create
+  after_commit :send_welcome_email, on: :create
 
   private
     def import_gravatar_profile
@@ -72,5 +73,9 @@ class User < ApplicationRecord
         self.bio          ||= profile["description"].presence
         self.timezone     ||= profile["timezone"].presence
       end
+    end
+
+    def send_welcome_email
+      UserMailer.welcome_email(self).deliver_later
     end
 end
