@@ -1,23 +1,25 @@
-<h1>Welcome to Our App</h1>
+<div class="home">
+  <section class="hero">
+    <h1>Welcome to OdinBook</h1>
+    <p>Connect with friends and the world around you on OdinBook.</p>
+  </section>
 
-<hr>
+  <section class="post-section">
+    <h2>Recent <%= link_to "Posts", posts_path %></h2>
 
-<div class="posts">
-  <h2>Recent <%= link_to "Posts", posts_path %></h2>
-  <% @recent_posts.each do |post| %>
-    <div class="post">
-      <h3><%= link_to post.title, post_path(post) %></h3>
-      <p><%= truncate(post.text, length: 100) %></p>
+    <div class="post-grid">
+      <% @recent_posts.each do |post| %>
+        <article class="post-card">
+          <div class="post-content">
+            <h3><%= link_to post.title, post_path(post) %></h3>
+            <p><%= truncate(post.text, length: 100) %></p>
+          </div>
+          <div class="post-stats">
+            <%= render "shared/like_button", likeable: post %>
+            <%= render "shared/comments/count", commentable: post %>
+          </div>
+        </article>
+      <% end %>
     </div>
-  <% end %>
+  </section>
 </div>
-
-<hr>
-
-<% if user_signed_in? %>
-  <p>Welcome back, <%= link_to current_user.username, user_path(current_user) %>!</p>
-  <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Log In", new_user_session_path %>
-  <%= link_to "Sign Up", new_user_registration_path %>
-<% end %>

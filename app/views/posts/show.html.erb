@@ -13,8 +13,7 @@
   <p>By: <%= link_to @post.author.username, @post.author %></p>
 <% end %>
 
-<%= render "shared/likes/count", likeable: @post %>
-<%= render "shared/likes/button", likeable: @post %>
+<%= render "shared/like_button", likeable: @post %>
 
 <hr>
 

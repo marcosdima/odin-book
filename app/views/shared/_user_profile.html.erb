@@ -1,0 +1,5 @@
+<div class="user__profile">
+  <img src="<%= user.avatar_url %>" alt="<%= user.name %>'s avatar" class="user__avatar">
+  <h2 class="user__name"><%= user.first_name.present? ? user.first_name : user.username %></h2>
+  <p class="user__username">@<%= user.username %></p>
+</div>

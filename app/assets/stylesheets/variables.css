@@ -1,0 +1,17 @@
+:root {
+  /* Main colors */
+  --primary: #181c14; 
+  --primary-light: #3c3d37;
+  --secondary: #697565;
+  --background: #3c3d37;
+  --surface: #ecdfcc;
+  
+  /* Text colors */
+  --text-primary: #ecdfcc;
+  --text-secondary: #181c14;
+  --text-hover: #697565;
+  
+  /* Border */
+  --border: #697565;
+  --radius: 8px;
+}
