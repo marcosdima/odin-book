@@ -4,6 +4,7 @@
   </div>
 
   <div class="navbar__right">
+    <%= button_to "Posts", posts_path, method: :get, class: "btn" %>
     <% if user_signed_in? %>
       <%= button_to "Profile", current_user, method: :get, class: "btn" %>
       <%= button_to "Log out",
@@ -11,8 +12,8 @@
           method: :delete,
           class: "btn" %>
     <% else %>
-      <%= button_to "Log in", new_user_session_path, class: "btn" %>
-      <%= button_to "Sign up", new_user_registration_path, class: "btn" %>
+      <%= button_to "Log in", new_user_session_path, class: "btn", method: :get %>
+      <%= button_to "Sign up", new_user_registration_path, class: "btn", method: :get %>
     <% end %>
   </div>
 </nav>

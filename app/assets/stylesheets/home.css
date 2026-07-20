@@ -23,31 +23,14 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  .post-section-title {
+    margin: 0;
+    user-select: none;
+  }
 }
 
 .post-grid {
   display: grid;
   gap: 1rem;
-}
-
-.post-card {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-
-  border: var(--border);
-  border-radius: var(--border-radius);
-
-  padding: 1rem;
-
-  h3 {
-    margin-bottom: .5rem;
-  }
-}
-
-.post-stats {
-  display: flex;
-  gap: 1rem;
-  font-size: .875rem;
 }

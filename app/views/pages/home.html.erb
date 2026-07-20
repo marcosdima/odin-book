@@ -5,21 +5,13 @@
   </section>
 
   <section class="post-section">
-    <h2>Recent <%= link_to "Posts", posts_path %></h2>
+    <h2 class="post-section-title">
+      Recent
+      <%= button_to "Posts", posts_path, method: :get, class: "btn" %>
+    </h2>
 
     <div class="post-grid">
-      <% @recent_posts.each do |post| %>
-        <article class="post-card">
-          <div class="post-content">
-            <h3><%= link_to post.title, post_path(post) %></h3>
-            <p><%= truncate(post.text, length: 100) %></p>
-          </div>
-          <div class="post-stats">
-            <%= render "shared/likes/button", likeable: post %>
-            <%= render "shared/comments/count", commentable: post %>
-          </div>
-        </article>
-      <% end %>
+      <%= render "shared/posts_display", posts: @recent_posts %>
     </div>
   </section>
 </div>

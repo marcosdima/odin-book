@@ -1,0 +1,28 @@
+<div class="posts-container">
+  <% if local_assigns[:title] %>
+    <div class="posts-header">
+      <h2 class="posts-title">
+        <%= title %>
+      </h2>
+    </div>
+  <% end %>
+
+  <% if posts.any? %>
+    <ul class="posts-list">
+      <% posts.each do |post| %>
+        <li class="post-card">
+          <h2>
+            <%= link_to post.title, post, class: "post-link" %>
+          </h2>
+          <p class="post-preview">
+            <%= truncate(post.text, length: 100) %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="posts-empty">
+      No posts yet.
+    </p>
+  <% end %>
+</div>

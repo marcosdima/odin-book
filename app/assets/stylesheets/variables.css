@@ -1,16 +1,17 @@
 :root {
   --primary: #123A6D;
   --primary-light: #295C9A;
-  --secondary: #B88A1A;
+  --secondary: #D9B44A;
   --background: #0E2548;
-  --surface: #F8F8F5;
+  --surface: #ffffde;
 
   --text: #ebebeb;
+  --text-dark: #295C9A;
   --text-secondary: #D9B44A;
-  --text-hover: #295C9A;
+  --text-hover: #367fd8;
 
   --border: 3px solid #4068A3;
-  --border-negative: 3px solid #B88A1A;
+  --border-negative: 3px solid #D9B44A;
   --border-radius: 8px;
 
   --error: #B71C1C;
