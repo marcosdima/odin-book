@@ -15,7 +15,7 @@
             <p><%= truncate(post.text, length: 100) %></p>
           </div>
           <div class="post-stats">
-            <%= render "shared/like_button", likeable: post %>
+            <%= render "shared/likes/button", likeable: post %>
             <%= render "shared/comments/count", commentable: post %>
           </div>
         </article>

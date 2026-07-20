@@ -4,17 +4,34 @@
   </div>
 <% end %>
 
-<h1><%= @post.title %></h1>
-<p><%= @post.text %></p>
+<div class="post-container">
+  <h1><%= @post.title %></h1>
+  <p><%= @post.text %></p>
 
-<% if is_author? %>
-  <p>By: You</p>
-<% else%>
-  <p>By: <%= link_to @post.author.username, @post.author %></p>
-<% end %>
+  <% if is_author? %>
+    <p>By: You</p>
+  <% else%>
+    <p>By: <%= link_to @post.author.username, @post.author %></p>
+  <% end %>
 
-<%= render "shared/like_button", likeable: @post %>
+  <%= render "shared/likes/button", likeable: @post %>
 
-<hr>
+  <hr>
 
-<%= render "shared/comments/comments", comments: @post.comments %>
+  <%= simple_form_for Comment.new,
+      url: comments_path(commentable_type: "Post", commentable_id: @post.id),
+      html: { class: "comment-form" } do |f| %>
+
+    <%= f.input :text,
+        label: false,
+        placeholder: "Write a comment...",
+        input_html: { rows: 3, class: "comment-input" } %>
+
+    <%= f.button :submit, "Comment", class: "btn comment-button" %>
+
+  <% end %>
+
+  <hr>
+
+  <%= render "shared/comments/comments", comments: @post.comments %>
+</div>

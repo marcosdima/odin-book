@@ -5,14 +5,14 @@
 
   <div class="navbar__right">
     <% if user_signed_in? %>
-      <%= button_to "Profile", current_user, method: :get, class: "navbar__item" %>
+      <%= button_to "Profile", current_user, method: :get, class: "btn" %>
       <%= button_to "Log out",
           destroy_user_session_path,
           method: :delete,
-          class: "navbar__item" %>
+          class: "btn" %>
     <% else %>
-      <%= button_to "Log in", new_user_session_path, class: "navbar__item" %>
-      <%= button_to "Sign up", new_user_registration_path, class: "navbar__item" %>
+      <%= button_to "Log in", new_user_session_path, class: "btn" %>
+      <%= button_to "Sign up", new_user_registration_path, class: "btn" %>
     <% end %>
   </div>
 </nav>

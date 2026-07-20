@@ -1,5 +1,8 @@
 <div class="comment">
-  <strong class="comment-author"><%= comment.author.username %>:</strong>
-  <p class="comment-text"><%= comment.text %></p>
-  <%= render "shared/like_button", likeable: comment %>
+  <div class="comment-content">
+    <strong class="comment-author"><%= comment.author.username %>:</strong>
+    <p class="comment-text"><%= comment.text %></p>
+  </div>
+  
+  <%= render "shared/likes/button", likeable: comment %>
 </div>

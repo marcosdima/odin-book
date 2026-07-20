@@ -1,8 +1,8 @@
 <% if comments.any? %>
   <h2>Comments</h2>
-  <ul>
+  <ul class="comments-list">
     <% comments.each do |comment| %>
-      <li>
+      <li class="comment-item">
         <%= render "shared/comments/comment", comment: comment %>
       </li>
     <% end %>
