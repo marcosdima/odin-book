@@ -12,4 +12,7 @@
   --border: 3px solid #4068A3;
   --border-negative: 3px solid #B88A1A;
   --border-radius: 8px;
+
+  --error: #B71C1C;
+  --success: #1B5E20;
 }

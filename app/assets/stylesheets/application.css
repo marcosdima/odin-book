@@ -57,6 +57,7 @@ a {
   background: transparent;
   border: solid 1px var(--border);
   color: var(--text-secondary);
+  cursor: pointer;
 
   &:hover {
     background: var(--secondary);

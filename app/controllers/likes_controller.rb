@@ -4,6 +4,7 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(like_params)
     if @like.save
+      flash[:success] = @like.likeable_type == "Post" ? "You liked #{@like.likeable.title}" : "Liked successfully."
       redirect_back(fallback_location: root_path, status: :see_other)
     else
       flash[:error] = "Unable to like."

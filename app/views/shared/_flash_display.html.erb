@@ -1,0 +1,20 @@
+<div class="flash-display" data-controller="flash">
+  <% flash.each do |type, message| %>
+    <div
+      class="flash-card flash-<%= type %>"
+      data-flash-target="card">
+
+      <button
+        class="flash-close"
+        data-action="click->flash#close"
+        aria-label="Cerrar notificación">
+        ×
+      </button>
+
+      <div class="flash-message">
+        <%= message %>
+      </div>
+
+    </div>
+  <% end %>
+</div>
