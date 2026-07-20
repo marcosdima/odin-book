@@ -22,7 +22,7 @@ class PostsController < ApplicationController
       redirect_to @post
     else
       flash.now[:error] = "Unable to create post."
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
