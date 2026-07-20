@@ -16,6 +16,7 @@ class LikesController < ApplicationController
     @like = Like.find_by(like_params)
 
     if @like
+      flash[:success] = @like.likeable_type == "Post" ? "You unliked #{@like.likeable.title}" : "Unliked successfully."
       @like.destroy
       redirect_back fallback_location: root_path, status: :see_other
     else

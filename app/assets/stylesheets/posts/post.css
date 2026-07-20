@@ -15,29 +15,6 @@
   gap: 0.75rem;
 }
 
-.comment-input {
-  width: 100%;
-  padding: 0.75rem;
-
-  resize: vertical;
-  font-size: 1rem;
-
-  border: var(--border);
-  border-radius: var(--border-radius);
-  
-  &:focus {
-    outline: none;
-    border-color: var(--border);
-  }
-}
-
-.comment-button {
-  font-size: 0.85rem; 
-  font-weight: 600;
-  border: var(--border-negative);
-  border-radius: var(--border-radius);
-}
-
 /* Comments container */
 .comments-list {
   display: flex;

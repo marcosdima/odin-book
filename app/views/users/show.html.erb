@@ -24,17 +24,7 @@
       <h2>Posts</h2>
 
       <ul class="user-post-list">
-        <% @user_posts.each do |post| %>
-          <li class="user-post">
-            <h3 class="user-post-title">
-              <%= link_to post.title, post, class: "user-post-link" %>
-            </h3>
-
-            <p class="user-post-text">
-              <%= truncate(post.text, length: 100) %>
-            </p>
-          </li>
-        <% end %>
+        <%= render "shared/posts_display", posts: @user_posts %>
       </ul>
     </section>
   <% end %>

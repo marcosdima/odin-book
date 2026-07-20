@@ -12,8 +12,13 @@
 
   --border: 3px solid #4068A3;
   --border-negative: 3px solid #D9B44A;
+  --border-big: 5px solid #4068A3;
   --border-radius: 8px;
+
+  --outline: 3px solid #367fd8;
 
   --error: #B71C1C;
   --success: #1B5E20;
+
+  --font-family: "Quicksand", sans-serif;
 }

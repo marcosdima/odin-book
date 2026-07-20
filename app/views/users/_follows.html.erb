@@ -5,7 +5,7 @@
     <% elsif follow_pending? %>
       <p>Your follow request to <%= @user.username %> is pending.</p>
     <% else %>
-      <%= button_to "Follow request", requests_path(request: { receiver_id: @user.id, type: "FollowRequest" }) %>
+      <%= button_to "Follow request", requests_path(request: { receiver_id: @user.id, type: "FollowRequest"}), class: "btn" %>
     <% end %>
   <% else %>
     <h2>Follow Requests</h2>
