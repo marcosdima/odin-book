@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   resources :likes, only: %i[ create ] do
     delete :unlike, on: :collection
   end
+
+  post "/profile/avatar", to: "users#upload_avatar", as: :upload_avatar
 end

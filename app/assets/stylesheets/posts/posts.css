@@ -19,11 +19,6 @@
   margin: 0;
 }
 
-.posts-new-button:hover {
-  background: var(--primary-light);
-  transform: translateY(-2px);
-}
-
 .posts-list {
   display: flex;
   flex-direction: column;

@@ -1,12 +1,41 @@
 <div class="user-container">
   <div class="user-header">
-    <% if @user.avatar_url.present? %>
-      <img
-        class="user-avatar"
-        src="<%= @user.avatar_url %>"
-        alt="<%= @user.username %>"
-      />
-    <% end %>
+    <div class="user-avatar-container" data-controller="avatar-upload">
+      <% if @user.avatar_url.present? %>
+        <img
+          class="user-avatar"
+          src="<%= @user.avatar_url %>"
+          alt="<%= @user.username %>"
+        />
+      <% else %>
+        <div class="user-avatar-placeholder">
+          <span class="user-avatar-initials">
+            <%= @user.username[0].upcase %>
+          </span>
+        </div>
+      <% end %>
+
+      <% if your_page? %>
+        <%= form_with url: upload_avatar_path,
+          method: :post,
+          multipart: true do |f| %>
+
+          <%= f.file_field :avatar,
+            class: "hidden",
+            data: {
+              avatar_upload_target: "input",
+              action: "change->avatar-upload#submit"
+            } %>
+          
+          <div class="user-avatar-overlay" data-action="click->avatar-upload#open">
+            <span class="user-avatar-upload">
+              ↓
+            </span>
+          </div>
+        <% end %>
+
+      <% end %>
+    </div>
 
     <div class="user-info">
       <h1 class="user-title"><%= profile_title %> Page</h1>

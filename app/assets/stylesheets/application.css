@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
   
   &:focus {
     outline: var(--outline);
@@ -58,7 +59,6 @@ textarea {
   font-family: var(--font-family);
   min-height: 4rem;
 }
-
 
 .icon {
   display: flex;
