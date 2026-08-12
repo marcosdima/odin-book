@@ -74,4 +74,4 @@ gem "simple_form", "~> 5.4"
 
 gem "faraday", "~> 2.14"
 
-gem "aws-sdk-s3", "~> 1.170"
+gem "aws-sdk-s3", "~> 1.229"
