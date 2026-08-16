@@ -1,15 +1,15 @@
-<% if user_signed_in? && already_liked?(likeable) %>
+<% if current_user && already_liked?(likeable) %>
   <%= button_to unlike_likes_path,
     method: :delete,
     params: like_params_for(likeable),
-    class: likeable ? "icon" : "btn" do %>
-    ♥ <span><%= likeable.likes.count %></span>
+    class: "btn" do %>
+      <% render "shared/likes/count", likeable: likeable %>
   <% end %>
 <% else %>
   <%= button_to likes_path,
     method: :post,
     params: like_params_for(likeable),
-    class: "icon" do %>
-    ♡ <span><%= likeable.likes.count %></span>
+    class: "btn" do %>
+      <% render "shared/likes/count", likeable: likeable %>
   <% end %>
 <% end %>

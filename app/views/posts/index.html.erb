@@ -1,11 +1,6 @@
 <div class="posts-page">
-  <div class="posts-header">
-    <h1 class="posts-title">
-      Posts
-    </h1>
-    <% if user_signed_in? %>
-      <%= button_to "New Post", new_post_path, class: "btn", method: :get %>
-    <% end %>
-  </div>
-  <%= render "shared/posts_display", posts: @posts %>
+  <%= render "shared/posts_display",
+      posts: @posts,
+      title: "Posts",
+      button: true %>
 </div>

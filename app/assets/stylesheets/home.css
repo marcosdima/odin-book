@@ -29,8 +29,3 @@
     user-select: none;
   }
 }
-
-.post-grid {
-  display: grid;
-  gap: 1rem;
-}

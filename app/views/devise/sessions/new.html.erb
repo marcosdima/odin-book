@@ -12,14 +12,14 @@
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <p><%= f.check_box :remember_me %></p>
+    <div style="display: flex; align-items: center; gap: 22rem;">
       <p><%= f.label :remember_me %></p>
+      <p><%= f.check_box :remember_me %></p>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", class: "btn" %>
   </div>
 <% end %>
 

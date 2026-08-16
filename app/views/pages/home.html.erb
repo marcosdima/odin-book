@@ -10,8 +10,6 @@
       <%= button_to "Posts", posts_path, method: :get, class: "btn" %>
     </h2>
 
-    <div class="post-grid">
-      <%= render "shared/posts_display", posts: @recent_posts %>
-    </div>
+    <%= render "shared/posts_display", posts: @recent_posts %>
   </section>
 </div>

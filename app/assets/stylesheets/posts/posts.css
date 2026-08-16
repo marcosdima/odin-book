@@ -1,12 +1,11 @@
-.posts-container {
+.posts-page {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
   gap: 2rem;
-
-  padding: 3rem;
-
-  border: var(--border);
-  border-radius: var(--border-radius);
 }
 
 .posts-header {
@@ -15,29 +14,52 @@
   align-items: center;
 }
 
-.posts-title {
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  padding: 2rem;
+
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+.post-title {
   margin: 0;
 }
 
+.post-link {
+  display: block;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+}
 .posts-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
-  padding: 0;
   margin: 0;
+  padding: 0;
 
   list-style: none;
 }
 
 .post-card {
   display: flex;
-  flex-direction: column;
-  gap: .5rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
 
   padding: 1.25rem;
-  background: var(--secondary);
-  color: var(--text-dark);
+
+  background: var(--primary-light);
 
   border: var(--border);
   border-radius: var(--border-radius);
@@ -49,22 +71,18 @@
 
 .post-card:hover {
   transform: translateY(-3px);
-
-  box-shadow:
-    0 8px 18px rgb(0 0 0 / 15%);
+  box-shadow: 0 8px 18px rgb(0 0 0 / 15%);
 }
 
-.post-title {
-  margin: 0;
-  color: var(--text-secondary)
+.post-card-content {
+  flex: 1;
+  min-width: 0;
 }
 
 .post-link {
   color: var(--primary);
-
   font-weight: 700;
   text-decoration: none;
-
   transition: color .2s ease;
 }
 
@@ -73,8 +91,16 @@
 }
 
 .post-preview {
-  margin: 0;
-  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.post-stats {
+  display: flex;
+  gap: .5rem;
+  flex-shrink: 0;
 }
 
 .posts-empty {

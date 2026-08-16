@@ -1,14 +1,24 @@
 <div class="post-container">
-  <h1><%= @post.title %></h1>
-  <p><%= @post.text %></p>
+  <header class="post-header">
+    <h1 class="post-title"><%= @post.title %></h1>
 
-  <% if is_author? %>
-    <p>By: You</p>
-  <% else%>
-    <p>By: <%= link_to @post.author.username, @post.author %></p>
-  <% end %>
+    <p class="post-author">
+      By:
+      <% if is_author? %>
+        You
+      <% else %>
+        <%= link_to @post.author.username, @post.author %>
+      <% end %>
+    </p>
+  </header>
 
-  <%= render "shared/likes/button", likeable: @post %>
+  <div class="post-body">
+    <p><%= simple_format(@post.text) %></p>
+  </div>
+
+  <div class="post-actions">
+    <%= render "shared/likes/button", likeable: @post %>
+  </div>
 
   <hr>
 
@@ -17,12 +27,12 @@
       html: { class: "comment-form" } do |f| %>
 
     <%= f.input :text,
+        as: :text,
         label: false,
         placeholder: "Write a comment...",
         input_html: { rows: 3, class: "comment-input" } %>
 
     <%= f.button :submit, "Comment", class: "btn" %>
-
   <% end %>
 
   <hr>

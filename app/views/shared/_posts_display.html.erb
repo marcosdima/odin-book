@@ -1,9 +1,16 @@
 <div class="posts-container">
-  <% if local_assigns[:title] %>
+  <% if local_assigns[:title] || local_assigns[:button] %>
     <div class="posts-header">
-      <h2 class="posts-title">
-        <%= title %>
-      </h2>
+      <% if local_assigns[:title] %>
+        <h2 class="posts-title"><%= title %></h2>
+      <% end %>
+
+      <% if local_assigns[:button] && user_signed_in? %>
+        <%= button_to "New Post",
+                      new_post_path,
+                      method: :get,
+                      class: "btn" %>
+      <% end %>
     </div>
   <% end %>
 
@@ -11,12 +18,20 @@
     <ul class="posts-list">
       <% posts.each do |post| %>
         <li class="post-card">
-          <h2>
-            <%= link_to post.title, post, class: "post-link" %>
-          </h2>
-          <p class="post-preview">
-            <%= truncate(post.text, length: 100) %>
-          </p>
+          <div class="post-card-content">
+            <h2 class="post-title">
+              <%= link_to post.title, post, class: "post-link" %>
+            </h2>
+
+            <p class="post-preview">
+              <%= truncate(post.text, length: 100) %>
+            </p>
+          </div>
+
+          <div class="post-stats">
+            <%= render "shared/likes/icon", likeable: post %>
+            <%= render "shared/comments/count", commentable: post %>
+          </div>
         </li>
       <% end %>
     </ul>

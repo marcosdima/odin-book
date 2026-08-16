@@ -39,3 +39,31 @@
   font-weight: 600;
   color: var(--text-secondary);
 }
+
+.post-header {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.post-title {
+  margin: 0;
+
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.post-author {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.post-body {
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: flex-end;
+}
