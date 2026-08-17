@@ -1,50 +1,48 @@
-<div class="signup-container">
-  <h1 class="signup-title">Sign up</h1>
+<div class="devise-container">
+  <h1 class="devise-title">Sign up</h1>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "signup-form" }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "devise-form" }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="signup-field">
-      <%= f.label :username, class: "signup-label" %>
+    <div class="devise-field">
+      <%= f.label :username, class: "devise-label" %>
       <%= f.text_field :username,
           autofocus: true,
           autocomplete: "username",
-          class: "signup-input" %>
+          class: "devise-input" %>
     </div>
 
-    <div class="signup-field">
-      <%= f.label :email, class: "signup-label" %>
+    <div class="devise-field">
+      <%= f.label :email, class: "devise-label" %>
       <%= f.email_field :email,
           autocomplete: "email",
-          class: "signup-input" %>
+          class: "devise-input" %>
     </div>
 
-    <div class="signup-field">
-      <%= f.label :password, class: "signup-label" %>
+    <div class="devise-field">
+      <%= f.label :password, class: "devise-label" %>
 
       <% if @minimum_password_length %>
-        <p class="signup-hint">
+        <p class="devise-hint">
           <%= @minimum_password_length %> characters minimum
         </p>
       <% end %>
 
       <%= f.password_field :password,
           autocomplete: "new-password",
-          class: "signup-input" %>
+          class: "devise-input" %>
     </div>
 
-    <div class="signup-field">
-      <%= f.label :password_confirmation, class: "signup-label" %>
+    <div class="devise-field">
+      <%= f.label :password_confirmation, class: "devise-label" %>
 
       <%= f.password_field :password_confirmation,
           autocomplete: "new-password",
-          class: "signup-input" %>
+          class: "devise-input" %>
     </div>
 
-    <%= f.submit "Sign up", class: "btn signup-btn" %>
+    <%= f.submit "Sign up", class: "btn" %>
   <% end %>
 
-  <div class="signup-links">
-    <%= render "devise/shared/links" %>
-  </div>
+  <%= render "devise/shared/links" %>
 </div>

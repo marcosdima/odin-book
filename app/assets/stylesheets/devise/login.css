@@ -1,0 +1,15 @@
+.login-remember {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-remember label {
+  white-space: nowrap;
+}
+
+.login-remember input[type="checkbox"] {
+  border: solid green 1px;
+  width: fit-content;
+  margin: 0;
+}

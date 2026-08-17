@@ -1,10 +1,10 @@
-.signup-container {
+.devise-container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 
   width: 100%;
-  max-width: 480px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 3rem;
 
@@ -12,28 +12,28 @@
   border-radius: var(--border-radius);
 }
 
-.signup-title {
+.devise-title {
   margin: 0;
   text-align: center;
 }
 
-.signup-form {
+.devise-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.signup-field {
+.devise-field {
   display: flex;
   flex-direction: column;
   gap: .5rem;
 }
 
-.signup-label {
+.devise-label {
   font-weight: 600;
 }
 
-.signup-input {
+.devise-input {
   width: 100%;
   padding: .75rem 1rem;
 
@@ -45,11 +45,11 @@
   box-sizing: border-box;
 
   transition:
-    border-color .2s ease,
-    box-shadow .2s ease;
+      border-color .2s ease,
+      box-shadow .2s ease;
 }
 
-.signup-input:focus {
+.devise-input:focus {
   outline: none;
 
   border-color: var(--primary);
@@ -57,27 +57,25 @@
   box-shadow: 0 0 0 3px rgb(14 37 72 / 10%);
 }
 
-.signup-hint {
+.devise-hint {
   margin: 0;
 
   color: var(--text-secondary);
   font-size: .875rem;
 }
 
-.signup-btn {
-  align-self: flex-end;
-}
-
-.signup-links {
+.devise-links {
   display: flex;
   justify-content: center;
+  padding-inline: 3rem;
+  gap: 1rem;
 }
 
-.signup-links a {
-  color: var(--primary);
+.devise-links a {
+  color: var(--text-secondary);
   text-decoration: none;
 }
 
-.signup-links a:hover {
+.devise-links a:hover {
   color: var(--text-hover);
 }
