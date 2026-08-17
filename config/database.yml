@@ -89,9 +89,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: odin_book_production
-    username: odin_book
-    password: <%= ENV["ODIN_BOOK_DATABASE_PASSWORD"] %>
+    url: <%= ENV["DATABASE_URL"] %>
   cache:
     <<: *primary_production
     database: odin_book_production_cache
