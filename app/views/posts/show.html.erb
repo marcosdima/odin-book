@@ -18,23 +18,31 @@
 
   <div class="post-actions">
     <%= render "shared/likes/button", likeable: @post %>
+    <% if is_author? %>
+      <%= button_to "X",
+        @post,
+        method: :delete,
+        data: { turbo_confirm: "Are you sure?" },
+        class: "btn" %>
+    <% end %>
   </div>
 
-  <hr>
+  <% if user_signed_in? %>
+    <hr>
+    <%= simple_form_for Comment.new,
+        url: comments_path(commentable_type: "Post", commentable_id: @post.id),
+        html: { class: "comment-form" } do |f| %>
 
-  <%= simple_form_for Comment.new,
-      url: comments_path(commentable_type: "Post", commentable_id: @post.id),
-      html: { class: "comment-form" } do |f| %>
+      <%= f.input :text,
+          as: :text,
+          label: false,
+          placeholder: "Write a comment...",
+          input_html: { rows: 3, class: "comment-input" } %>
 
-    <%= f.input :text,
-        as: :text,
-        label: false,
-        placeholder: "Write a comment...",
-        input_html: { rows: 3, class: "comment-input" } %>
-
-    <%= f.button :submit, "Comment", class: "btn" %>
+      <%= f.button :submit, "Comment", class: "btn" %>
+    <% end %>
   <% end %>
-
+  
   <hr>
 
   <%= render "shared/comments/comments", comments: @post.comments %>

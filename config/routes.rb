@@ -13,8 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts, only: %i[ index new create show ]
-  resources :comments, only: %i[ create ]
+  resources :posts, only: %i[ index new create show destroy ]
+  resources :comments, only: %i[ create destroy ]
   resources :likes, only: %i[ create ] do
     delete :unlike, on: :collection
   end

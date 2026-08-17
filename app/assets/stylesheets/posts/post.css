@@ -8,38 +8,6 @@
   border-radius: var(--border-radius);
 }
 
-/* Comment Form */
-.comment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-/* Comments container */
-.comments-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-/*Comment component*/
-.comment {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.comment-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.comment-author {
-  font-weight: 600;
-  color: var(--text-secondary);
-}
-
 .post-header {
   display: flex;
   flex-direction: column;
