@@ -8,7 +8,11 @@ class UsersController < ApplicationController
   end
 
   def upload_avatar
-    url = SupabaseStorage.upload(params[:avatar], current_user.id)
+    begin
+      url = SupabaseStorage.upload(params[:avatar], current_user.id)
+    rescue SupabaseStorage::AvatarUploadError => e
+      redirect_to current_user, alert: e.message and return
+    end
 
     current_user.update!(avatar_url: url)
 
